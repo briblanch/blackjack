@@ -11,13 +11,20 @@
 #include <vector>
 #include <string>
 #include <time.h>
+#include <sstream>
 
 using namespace std;
 
-void error(const char *msg)
-{
+void error(const char *msg) {
     perror(msg);
     exit(0);
+}
+
+char *intToString(int number) {
+    stringstream ss;
+    ss << number;
+
+    return (char *) ss.str().c_str();
 }
 
 int main(int argc, char *argv[]) {
@@ -102,7 +109,7 @@ int main(int argc, char *argv[]) {
         it = card_map.find(card_vec.at(randIndex));
 
         selectedCard = it->second;
-        temp = (char *) to_string(selectedCard).c_str();
+        temp = intToString(selectedCard);
 
         card_vec.erase(card_vec.begin()+randIndex);
         card_map.erase(it);
